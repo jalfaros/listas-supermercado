@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "superMarket",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
