@@ -13,18 +13,18 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, 
-            IonicModule.forRoot(), 
-            AppRoutingModule,
-            IonicStorageModule.forRoot(),
-            AngularFireModule.initializeApp( environment.firebase ),
-            AngularFireAuthModule,
-            AngularFirestoreModule,
-          ],
+  imports: [BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ]
 })
-export class AppModule {}
+export class AppModule { }

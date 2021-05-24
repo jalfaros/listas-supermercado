@@ -3,6 +3,7 @@ import { FireUser } from '../shared/services/fire-user'
 import { AngularFireAuth } from '@angular/fire/auth'
 import * as firebase from 'firebase'
 import { Router } from '@angular/router'
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class AuthServiceService {
 
   constructor(
     public fireAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private toast: ToastService
   ) { }
 
 
@@ -35,4 +37,21 @@ export class AuthServiceService {
       console.log(error)
     }
   }
+
+  createUser({ email, userName, password }) {
+
+    this.fireAuth.createUserWithEmailAndPassword(email, password)
+      .then(user => {
+        user.user.updateProfile({
+          displayName: userName
+        });
+        this.toast.informationToast('Successfully registered', 'success', '');
+        this.router.navigate(['/login']);
+
+      }).catch(error => {
+        this.toast.informationToast(error.message, 'danger', 'Error creating the account');
+
+      });
+  }
+
 }
