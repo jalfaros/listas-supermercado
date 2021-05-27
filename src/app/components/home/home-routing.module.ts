@@ -6,8 +6,19 @@ import { HomePage } from './home.page';
 const routes: Routes = [
   {
     path: '',
-    component: HomePage
-  }
+    component: HomePage,
+    children:[
+      {
+        path: 'market',
+        loadChildren: () => import('../pages/market/market.module').then( m => m.MarketPageModule )
+      },
+      {
+        path: '',
+        redirectTo: 'market',
+        pathMatch: 'full'
+      }
+    ]
+  },
 ];
 
 @NgModule({
