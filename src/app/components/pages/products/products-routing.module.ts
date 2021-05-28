@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ProductsPage
+  },
+  {
+    path: 'add-product-modal',
+    loadChildren: () => import('./add-product-modal/add-product-modal.module').then( m => m.AddProductModalPageModule)
   }
 ];
 

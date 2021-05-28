@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
 import { Storage } from '@ionic/storage'
 import { MarketService } from 'src/app/services/market.service';
+import { Router } from '@angular/router';
 
 
 
@@ -18,7 +19,8 @@ export class MarketPage implements OnInit {
   constructor(private alertController: AlertController,
     private _toastService: ToastService,
     private storage: Storage,
-    private _marketService: MarketService) { }
+    private _marketService: MarketService,
+    private router : Router) { }
 
   async ngOnInit() {
     this.storage.create();
@@ -41,7 +43,7 @@ export class MarketPage implements OnInit {
           name: 'description',
           type: 'text',
           placeholder: 'Market description'
-        }
+        },  
       ],
       buttons: [
 
@@ -103,8 +105,11 @@ export class MarketPage implements OnInit {
     console.log(doc)
   }
 
-
-
+  onLogout(){
+    this.storage.remove('userInformation').then( () => {
+      this.router.navigate(['/login']);
+    });
+  }
 
 
 

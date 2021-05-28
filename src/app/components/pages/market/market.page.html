@@ -1,6 +1,12 @@
+
 <ion-header>
-  <ion-toolbar class="ion-text-center">
-    <ion-title>My Markets</ion-title>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="onLogout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Markets</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,18 +15,20 @@
       <ion-grid>
 
         <ion-row *ngFor="let market of userMarkets">
-          <ion-col >
-            <ion-card (click)="onClick( market.documentId )">            
-              <ion-card-header>
-                <ion-card-subtitle>Market</ion-card-subtitle>
-                <ion-card-title style="font-size: medium;">{{ market.supermarket_name }}</ion-card-title>
-              </ion-card-header>
-              <ion-card-content>
-                <p>{{ market.description }}</p>
-              </ion-card-content>
 
-            </ion-card>
-          </ion-col>
+            <ion-col >
+            
+              <ion-card (click)="onClick( market.documentId )">            
+                <ion-card-header>
+                  <ion-card-subtitle>Market</ion-card-subtitle>
+                  <ion-card-title style="font-size: medium;">{{ market.supermarket_name }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <p>{{ market.description }}</p>
+                </ion-card-content>
+  
+              </ion-card>
+            </ion-col>
         </ion-row>
 
       </ion-grid>

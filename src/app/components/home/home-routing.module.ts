@@ -13,10 +13,14 @@ const routes: Routes = [
         loadChildren: () => import('../pages/market/market.module').then( m => m.MarketPageModule )
       },
       {
+        path: 'products',
+        loadChildren: () => import('../pages/products/products.module').then( m => m.ProductsPageModule )
+      },
+      {
         path: '',
         redirectTo: 'market',
         pathMatch: 'full'
-      }
+      } 
     ]
   },
 ];

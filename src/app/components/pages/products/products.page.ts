@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { AddProductModalPage } from './add-product-modal/add-product-modal.page'
 
 @Component({
   selector: 'app-products',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsPage implements OnInit {
 
-  constructor() { }
+  constructor( private modalController : ModalController ) { }
 
   ngOnInit() {
   }
+
+
+
+  async onAdd(){
+    const modal = await this.modalController.create({
+      component: AddProductModalPage
+    });
+
+    return await modal.present();
+  }
+
 
 }

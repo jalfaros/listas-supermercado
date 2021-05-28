@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -9,8 +9,12 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { environment } from '../environments/environment'
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+import { File } from '@ionic-native/file/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [BrowserModule, 
             IonicModule.forRoot(), 
             AppRoutingModule,
+            FormsModule,
             ReactiveFormsModule,
             IonicStorageModule.forRoot(),
             AngularFireModule.initializeApp( environment.firebase ),
@@ -25,10 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
             AngularFirestoreModule,
             HttpClientModule
           ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Camera, File],
   bootstrap: [AppComponent],
   schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class AppModule {}
