@@ -17,12 +17,14 @@ export class MarketService implements OnInit {
     await this.storage.create();
   }
 
-  BASE_URL = 'http://localhost:3000'
+  //BASE_URL = 'http://localhost:3000'
+  BASE_URL = 'https://market-backend-diseno.herokuapp.com'
+
 
 
 
   async getMarkets() {
-    return await this.storage.get('userInformation').then(userData =>{
+    return await this.storage.get('userInformation').then(userData => {
       userData = JSON.parse(userData)
       return this.http.get(`${this.BASE_URL}/markets/getMarkets?uid=${userData['uid']}`)
     })
