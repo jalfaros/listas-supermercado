@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
 import { Storage } from '@ionic/storage'
 import { MarketService } from 'src/app/services/market.service';
+import { Router } from '@angular/router';
 
 
 
@@ -18,7 +19,8 @@ export class MarketPage implements OnInit {
   constructor(private alertController: AlertController,
     private _toastService: ToastService,
     private storage: Storage,
-    private _marketService: MarketService) { }
+    private _marketService: MarketService,
+    private _router: Router) { }
 
   async ngOnInit() {
     this.storage.create();
@@ -90,17 +92,17 @@ export class MarketPage implements OnInit {
   getMarkets() {
     this._marketService.getMarkets().then(dataObs => {
       dataObs.subscribe((response: []) => {
-        if( !response['data'] ){
+        if (!response['data']) {
           return;
         }
         this.userMarkets = response['data'];
-        console.log( this.userMarkets )
+        console.log(this.userMarkets)
       })
     })
   }
 
-  onClick( doc ){
-    console.log(doc)
+  onClick(doc) {
+    this._router.navigate(['/home/product-lists', doc]);
   }
 
 

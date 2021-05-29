@@ -10,14 +10,23 @@
 
         <ion-row *ngFor="let market of userMarkets">
           <ion-col >
-            <ion-card (click)="onClick( market.documentId )">            
-              <ion-card-header>
-                <ion-card-subtitle>Market</ion-card-subtitle>
-                <ion-card-title style="font-size: medium;">{{ market.supermarket_name }}</ion-card-title>
-              </ion-card-header>
-              <ion-card-content>
-                <p>{{ market.description }}</p>
-              </ion-card-content>
+            <ion-card (click)="onClick( market.documentId )">     
+              <ion-row>
+                <ion-col>
+                  <ion-card-header>
+                    <ion-card-subtitle>Market</ion-card-subtitle>
+                    <ion-card-title style="font-size: medium;">{{ market.supermarket_name }}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <p>{{ market.description }}</p>
+                  </ion-card-content>
+                </ion-col>      
+  
+                <ion-col style="margin-top: 15%; margin-left: 10%;">
+                  <ion-button color="dark"><ion-icon name="eye-outline"></ion-icon></ion-button>
+                </ion-col>
+
+              </ion-row> 
 
             </ion-card>
           </ion-col>

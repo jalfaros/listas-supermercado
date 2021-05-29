@@ -7,10 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    children:[
+    children: [
       {
         path: 'market',
-        loadChildren: () => import('../pages/market/market.module').then( m => m.MarketPageModule )
+        loadChildren: () => import('../pages/market/market.module').then(m => m.MarketPageModule)
+      },
+      {
+        path: 'product-lists/:id',
+        loadChildren: () => import('../pages/product-lists/product-lists.module').then(m => m.ProductListsPageModule)
       },
       {
         path: '',
@@ -25,4 +29,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomePageRoutingModule {}
+export class HomePageRoutingModule { }

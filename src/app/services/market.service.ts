@@ -22,10 +22,14 @@ export class MarketService implements OnInit {
 
 
   async getMarkets() {
-    return await this.storage.get('userInformation').then(userData =>{
+    return await this.storage.get('userInformation').then(userData => {
       userData = JSON.parse(userData)
       return this.http.get(`${this.BASE_URL}/markets/getMarkets?uid=${userData['uid']}`)
     })
+  }
+
+  getMarket(id) {
+    return this.http.get(`${this.BASE_URL}/markets/getMarketForId?idMarket=${id}`)
   }
 
   saveMarket(userInfo, data) {
