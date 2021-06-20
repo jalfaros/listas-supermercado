@@ -36,4 +36,12 @@ export class MarketService implements OnInit {
     data['uid'] = userInfo['uid']
     return this.http.post(`${this.BASE_URL}/markets/newMarket`, data)
   }
+
+  createListMarket(data) {
+    return this.http.post(`${this.BASE_URL}/markets/newListProductsMarket`, data);
+  }
+
+  addIdListToMarket(data) {
+    return this.http.post(`${this.BASE_URL}/markets/addIdListProductsToMarket`, data)
+  }
 }
