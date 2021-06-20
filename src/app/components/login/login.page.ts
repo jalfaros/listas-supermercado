@@ -5,7 +5,6 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Storage } from '@ionic/storage'
 import { ToastService } from 'src/app/services/toast.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -74,9 +73,9 @@ export class LoginPage implements OnInit {
     this._authService.googleSignIn().then(response => {
       if (response['message']) {
         this._toast.informationToast(response['message'], 'danger', 'Login fail');
-      }else{
+      } else {
         console.log(response)
-        this.saveUserStorage( response );
+        this.saveUserStorage(response);
       }
     })
   }

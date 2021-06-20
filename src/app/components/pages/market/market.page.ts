@@ -8,6 +8,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 
 
 
+
 @Component({
   selector: 'app-market',
   templateUrl: './market.page.html',
@@ -21,7 +22,7 @@ export class MarketPage implements OnInit {
     private _toastService: ToastService,
     private storage: Storage,
     private _marketService: MarketService,
-    private router: Router,
+    private _router: Router,
     private loading: LoadingController,
     private _loadingService: LoadingService) { }
 
@@ -108,13 +109,13 @@ export class MarketPage implements OnInit {
   }
 
   onClick(doc) {
-    console.log(doc)
+    this._router.navigate(['/home/product-lists', doc]);
   }
 
   onLogout() {
     this.storage.remove('userInformation').then(() => {
-      this.router.navigate(['/login']);
-    });
+      this._router.navigate(['/login']);
+    }); 
   }
 
 

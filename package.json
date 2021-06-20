@@ -30,6 +30,7 @@
     "@ionic/storage": "^3.0.4",
     "@ionic/storage-angular": "^3.0.6",
     "cordova-android": "^9.1.0",
+    "enhanced-resolve": "^4.5.0",
     "firebase": "^8.6.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
