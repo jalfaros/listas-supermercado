@@ -20,5 +20,5 @@ export class ToastService {
     })
     toast.present();
   }
-
+  
 }

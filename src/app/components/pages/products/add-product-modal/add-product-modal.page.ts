@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx'
 import { ToastService } from 'src/app/services/toast.service';
 import { PhotoUploaderService } from 'src/app/services/photo-uploader.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { LoadingService } from 'src/app/services/loading.service';
 
 
 
@@ -28,7 +29,8 @@ export class AddProductModalPage implements OnInit {
     private camera: Camera,
     private toast: ToastService,
     private uploader: PhotoUploaderService,
-    private storage: AngularFireStorage) { }
+    private storage: AngularFireStorage,
+    private _loadingService : LoadingService) { }
 
 
   ngOnInit() {
@@ -72,8 +74,12 @@ export class AddProductModalPage implements OnInit {
     if (!this.productForm.valid) {
       return;
     }
+
+    this._loadingService.presentLoading();
     var downloadToken = '';
-    await this.imageConverter( this.productForm.value['productName'] ).then( response => { downloadToken = response });
+    if ( this.imgUrl ){
+      await this.imageConverter( this.productForm.value['productName'] ).then( response => { downloadToken = response });
+    }
     this.onSavingProduct(downloadToken);
   }
 

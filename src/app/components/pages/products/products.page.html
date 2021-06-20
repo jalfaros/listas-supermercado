@@ -8,7 +8,12 @@
 </ion-header>
 
 
-<ion-content>
+
+<ion-content>    
+  <ion-item>
+    <ion-searchbar ></ion-searchbar> 
+  </ion-item>
+
 
   <ion-grid>
     <ion-row *ngFor="let product of products">
@@ -16,7 +21,7 @@
         <ion-card>
             <ion-item>
               <ion-label slot="start"><strong>{{ product.product_name }}</strong></ion-label>
-              <ion-button slot="end" color="danger" fill="outline"><ion-icon name="trash"></ion-icon></ion-button>
+              <ion-button (click)="onDeleteProduct( product )" slot="end" color="danger" fill="outline"><ion-icon name="trash"></ion-icon></ion-button>
             </ion-item>
 
             <ion-card-content>
@@ -24,7 +29,7 @@
 
                 <ion-row>
                   <ion-col>
-                    <img src="{{ product.img_url }}" alt="">
+                    <img class="img-style" src="{{ product.img_url }}" alt="">
                   </ion-col>
 
                   <ion-col>

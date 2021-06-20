@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
 import { Storage } from '@ionic/storage'
 import { MarketService } from 'src/app/services/market.service';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
 
 
 
@@ -20,7 +21,9 @@ export class MarketPage implements OnInit {
     private _toastService: ToastService,
     private storage: Storage,
     private _marketService: MarketService,
-    private router : Router) { }
+    private router: Router,
+    private loading: LoadingController,
+    private _loadingService: LoadingService) { }
 
   async ngOnInit() {
     this.storage.create();
@@ -43,7 +46,7 @@ export class MarketPage implements OnInit {
           name: 'description',
           type: 'text',
           placeholder: 'Market description'
-        },  
+        },
       ],
       buttons: [
 
@@ -54,7 +57,9 @@ export class MarketPage implements OnInit {
         {
           text: 'Add',
           handler: (data) => {
+
             if (this.validateAlertData(data)) {
+              this._loadingService.presentLoading();
               this.saveMarket(data);
             }
           }
@@ -83,6 +88,7 @@ export class MarketPage implements OnInit {
         } else {
           this._toastService.informationToast('Something went wrong!', 'danger', 'Error!')
         }
+        this.loading.dismiss();
       })
     });
   }
@@ -92,21 +98,21 @@ export class MarketPage implements OnInit {
   getMarkets() {
     this._marketService.getMarkets().then(dataObs => {
       dataObs.subscribe((response: []) => {
-        if( !response['data'] ){
+        if (!response['data']) {
           return;
         }
         this.userMarkets = response['data'];
-        console.log( this.userMarkets )
+        console.log(this.userMarkets)
       })
     })
   }
 
-  onClick( doc ){
+  onClick(doc) {
     console.log(doc)
   }
 
-  onLogout(){
-    this.storage.remove('userInformation').then( () => {
+  onLogout() {
+    this.storage.remove('userInformation').then(() => {
       this.router.navigate(['/login']);
     });
   }

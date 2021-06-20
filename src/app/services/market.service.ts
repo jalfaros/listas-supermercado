@@ -17,8 +17,8 @@ export class MarketService implements OnInit {
     await this.storage.create();
   }
 
-  //BASE_URL = 'http://localhost:3000'
-  BASE_URL = 'https://market-backend-diseno.herokuapp.com'
+  BASE_URL = 'http://localhost:3000'
+ // BASE_URL = 'https://market-backend-diseno.herokuapp.com'
 
 
 
