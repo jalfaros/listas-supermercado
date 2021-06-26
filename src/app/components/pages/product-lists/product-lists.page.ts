@@ -15,6 +15,7 @@ export class ProductListsPage implements OnInit {
 
   argumentParam = null;
   market: MarketModel = new MarketModel;
+  marketList = [];
 
 
   constructor(
@@ -32,6 +33,10 @@ export class ProductListsPage implements OnInit {
 
       if (res['success']) {
         this.market = res['data'];
+        this.market.catalogues.forEach(data => {
+          this.getListMarket(data);
+        })
+
         console.log(this.market, 'market');
       }
 
@@ -78,13 +83,28 @@ export class ProductListsPage implements OnInit {
   saveListProduct(data) {
     this._serviceMarket.createListMarket(data).subscribe(resp => {
       if (resp['success']) {
-        this._toastService.informationToast('Market added succesfully', 'success', 'Success!');
-        console.log(resp, '<===');
+        this._serviceMarket.addIdListToMarket({ idList: resp['idListProduct'], idMarket: this.argumentParam })
+          .subscribe(respo => {
+            if (respo['success']) {
+              this.getListMarket(resp['idListProduct']);
+              this._toastService.informationToast('Market added succesfully', 'success', 'Success!');
+            } else {
+              this._toastService.informationToast('Danger', 'Error', 'Error')
+            }
+          })
 
-        //Faltaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        this._serviceMarket.addIdListToMarket({ idList: ['idListProduct'], idMarket: '' })
       }
     });
+  }
+
+  getListMarket(data) {
+    this._serviceMarket.getListMarket(data)
+      .subscribe(resp => {
+        if (resp['success']) {
+          console.log('la data ', resp);
+          this.marketList.push(resp['data']);
+        }
+      })
   }
 
 }

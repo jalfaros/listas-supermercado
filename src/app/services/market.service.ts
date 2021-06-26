@@ -18,7 +18,7 @@ export class MarketService implements OnInit {
   }
 
   BASE_URL = 'http://localhost:3000'
- // BASE_URL = 'https://market-backend-diseno.herokuapp.com'
+  // BASE_URL = 'https://market-backend-diseno.herokuapp.com'
 
 
 
@@ -45,5 +45,9 @@ export class MarketService implements OnInit {
 
   addIdListToMarket(data) {
     return this.http.post(`${this.BASE_URL}/markets/addIdListProductsToMarket`, data)
+  }
+
+  getListMarket(id) {
+    return this.http.get(`${this.BASE_URL}/markets/getListMarketForId?idList=${id}`)
   }
 }
