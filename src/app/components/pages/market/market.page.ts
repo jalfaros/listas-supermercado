@@ -71,6 +71,51 @@ export class MarketPage implements OnInit {
     (await alerta).present();
   }
 
+  async editMarketAlert(id) {
+
+    let alerta = this.alertController.create({
+      header: 'Editing market',
+      backdropDismiss: false,
+      inputs: [
+        {
+          name: 'marketName',
+          type: 'text',
+          placeholder: 'Market name'
+        },
+        {
+          name: 'description',
+          type: 'text',
+          placeholder: 'Market description'
+        },
+      ],
+      buttons: [
+
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Edit',
+          handler: (data) => {
+
+            if (this.validateAlertData(data)) {
+              this._marketService.editMarket({ idMarket: id, name: data.marketName, desc: data.description })
+                .subscribe(resp => {
+                  if (resp['success']) {
+                    this._toastService.informationToast('Market edited succesfully', 'success', 'Success!')
+                    this.getMarkets()
+                  }
+                })
+
+            }
+          }
+        }
+      ]
+
+    });
+    (await alerta).present();
+  }
+
 
   validateAlertData({ marketName, description }) {
     if (marketName.length > 0 && description.length > 0) {
@@ -115,7 +160,20 @@ export class MarketPage implements OnInit {
   onLogout() {
     this.storage.remove('userInformation').then(() => {
       this._router.navigate(['/login']);
-    }); 
+    });
+  }
+
+  deleteMarket(id) {
+    this._marketService.deleteMarket(id).subscribe(resp => {
+      if (resp['success']) {
+        this._toastService.informationToast('Market deleted succesfully', 'success', 'Success!');
+
+        this.getMarkets();
+
+      } else {
+        this._toastService.informationToast('Something went wrong!', 'danger', 'Error!');
+      }
+    })
   }
 
 

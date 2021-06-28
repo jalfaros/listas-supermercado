@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MarketService } from '../../../services/market.service';
 import { MarketModel } from '../../../models/Market-Model';
 import { AlertController } from '@ionic/angular';
@@ -22,7 +22,9 @@ export class ProductListsPage implements OnInit {
     private _activeRoute: ActivatedRoute,
     private _serviceMarket: MarketService,
     private _alertControll: AlertController,
-    private _toastService: ToastService) {
+    private _toastService: ToastService,
+    private _router: Router,
+  ) {
 
   }
 
@@ -89,7 +91,7 @@ export class ProductListsPage implements OnInit {
               this.getListMarket(resp['idListProduct']);
               this._toastService.informationToast('Market added succesfully', 'success', 'Success!');
             } else {
-              this._toastService.informationToast('Danger', 'Error', 'Error')
+              this._toastService.informationToast('Something went wrong!', 'danger', 'Error!')
             }
           })
 
@@ -106,5 +108,6 @@ export class ProductListsPage implements OnInit {
         }
       })
   }
+
 
 }
