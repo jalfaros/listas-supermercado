@@ -64,8 +64,9 @@ export class ProductsPage implements OnInit {
     this._productService.onDeleteProducts(productId).subscribe(response => {
       if (response['success']) {
         this.onGetProducts();
+        this.toast.informationToast('Product deleted succesfully', 'success', 'Success!');
       } else {
-        this.toast.informationToast('Something went wrong deleting the product', 1, 'Error!');
+        this.toast.informationToast('Something went wrong deleting the product', 'error', 'Error!');
       }
       this.loading.dismiss();
     });

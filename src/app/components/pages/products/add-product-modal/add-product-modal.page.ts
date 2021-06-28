@@ -66,7 +66,7 @@ export class AddProductModalPage implements OnInit {
       this.imgUrl = 'data:image/jpeg;base64,' + imgData
       this.preview = this.imgUrl;
     }).catch(() => {
-      this.toast.informationToast('Something went wrong selecting the image', 0, 'Image error')
+      this.toast.informationToast('Something went wrong selecting the image', 'error', 'Image error')
     })
   }
 

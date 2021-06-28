@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/products/products.module').then( m => m.ProductsPageModule )
       },
       {
+        path: 'product-list-add',
+        loadChildren: () => import( '../pages/list-product-add/list-product-add.module' ).then( m => m.ListProductAddPageModule )
+      },
+      {
         path: '',
         redirectTo: 'market',
         pathMatch: 'full'

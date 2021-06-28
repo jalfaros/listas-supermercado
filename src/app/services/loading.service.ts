@@ -16,4 +16,8 @@ export class LoadingService {
     (await loading).present();
 
   }
+
+  async dimissLoading(){
+    this.loading.dismiss();
+  }
 }
