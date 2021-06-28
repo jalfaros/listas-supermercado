@@ -10,7 +10,6 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
   <ion-content *ngIf="userMarkets.length === 0">
     <ion-card style="margin-top: 20%;">
@@ -22,52 +21,34 @@
   </ion-content>
   
   
-  <ion-content *ngIf="userMarkets.length !== 0">
-  
-        <ion-grid>
-  
-          <ion-row *ngFor="let market of userMarkets">
-  
-              <ion-col >
-              
-                <ion-card (click)="onClick( market.documentId )">            
-                  <ion-card-header>
-                    <ion-card-subtitle>Market</ion-card-subtitle>
-                    <ion-card-title style="font-size: medium;">{{ market.supermarket_name }}</ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <p>{{ market.description }}</p>
-                  </ion-card-content>
-    
-                </ion-card>
-              </ion-col>
-          </ion-row>
-  
-        </ion-grid>
-       
-  </ion-content>
 
       <ion-grid>
 
         <ion-row *ngFor="let market of userMarkets">
           <ion-col >
-            <ion-card (click)="onClick( market.documentId )">     
-              <ion-row>
-                <ion-col>
-                  <ion-card-header>
-                    <ion-card-subtitle>Market</ion-card-subtitle>
-                    <ion-card-title style="font-size: medium;">{{ market.supermarket_name }}</ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <p>{{ market.description }}</p>
-                  </ion-card-content>
-                </ion-col>      
-  
-                <ion-col style="margin-top: 15%; margin-left: 10%;">
-                  <ion-button color="dark"><ion-icon name="eye-outline"></ion-icon></ion-button>
-                </ion-col>
+            <ion-card >     
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-card-header>
+                      <ion-card-subtitle>Market</ion-card-subtitle>
+                      <ion-card-title style="font-size: medium;">{{ market.supermarket_name }}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>{{ market.description }}</p>
+                    </ion-card-content>
+                  </ion-col>      
+    
+                  <ion-col style="margin-top: 15%; text-align: center;">
+                    <ion-buttons>
+                      <ion-button (click)="onClick( market.documentId )" color="dark"><ion-icon name="eye-outline"></ion-icon></ion-button>
+                      <ion-button (click)="editMarketAlert( market.documentId )"  color="primary"> <ion-icon slot="icon-only" name="pencil"></ion-icon></ion-button>
+                      <ion-button (click)="deleteMarket( market.documentId )" color="danger"> <ion-icon slot="icon-only"  name="trash"></ion-icon></ion-button>  
+                    </ion-buttons>
+                    </ion-col>
 
-              </ion-row> 
+                </ion-row> 
+              </ion-grid>
 
             </ion-card>
           </ion-col>

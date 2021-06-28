@@ -9,11 +9,11 @@ export class LoadingService {
   constructor(private loading: LoadingController) { }
 
   async presentLoading() {
-    const loading = this.loading.create({
+    const loadin = this.loading.create({
       message: 'Please wait...'
     });
 
-    (await loading).present();
+    (await loadin).present();
 
   }
 

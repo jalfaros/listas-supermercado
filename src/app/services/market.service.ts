@@ -12,6 +12,7 @@ export class MarketService implements OnInit {
 
   userInfo = {};
 
+  userMarkets = []
 
   async ngOnInit() {
     await this.storage.create();
@@ -21,7 +22,17 @@ export class MarketService implements OnInit {
   // BASE_URL = 'https://market-backend-diseno.herokuapp.com'
 
 
-
+  getMarks() {
+    this.getMarkets().then(dataObs => {
+      dataObs.subscribe((response: []) => {
+        if (!response['data']) {
+          return;
+        }
+        this.userMarkets = response['data'];
+        console.log(this.userMarkets)
+      })
+    })
+  }
 
   async getMarkets() {
     return await this.storage.get('userInformation').then(userData => {
@@ -43,6 +54,10 @@ export class MarketService implements OnInit {
     return this.http.post(`${this.BASE_URL}/markets/newListProductsMarket`, data);
   }
 
+  editMarket(data) {
+    return this.http.post(`${this.BASE_URL}/markets/editMarketForId`, data)
+  }
+
   addIdListToMarket(data) {
     return this.http.post(`${this.BASE_URL}/markets/addIdListProductsToMarket`, data)
   }
@@ -54,5 +69,9 @@ export class MarketService implements OnInit {
 
   deleteMarketList(listId, marketId) {
     return this.http.post(`${this.BASE_URL}/markets/deleteProductList`, { listId, marketId });
+  }
+
+  deleteMarket(id) {
+    return this.http.delete(`${this.BASE_URL}/markets/deleteMarketForId?idMarket=${id}`)
   }
 }
