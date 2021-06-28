@@ -27,7 +27,7 @@ export class ProductListsPage implements OnInit {
     private _toastService: ToastService,
     private _router: Router,
     private _loadingService: LoadingService,
-    private modal : ModalController) {
+    private modal: ModalController) {
 
   }
 
@@ -46,7 +46,6 @@ export class ProductListsPage implements OnInit {
           this.getListMarket(data);
         })
 
-        console.log(this.market, 'market');
       }
     });
 
@@ -133,10 +132,10 @@ export class ProductListsPage implements OnInit {
   }
 
 
-  async modalAdd( listId ) {
+  async modalAdd(listId) {
     const modal = await this.modal.create({
       component: ListProductAddPage,
-      componentProps:{
+      componentProps: {
         'listId': listId
       }
     })
@@ -145,12 +144,16 @@ export class ProductListsPage implements OnInit {
   }
 
 
-  addProductsList( { listId } ) {
-    this.modalAdd( listId );
+  addProductsList({ listId }) {
+    this.modalAdd(listId);
   }
 
   private filterMarketList(listId) {
     this.marketList = this.marketList.filter(item => item.listId !== listId);
+  }
+
+  seeList({ listId }) {
+    this._router.navigate(['/home/see-product', listId]);
   }
 
 }

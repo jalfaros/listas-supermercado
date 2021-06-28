@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      
+      <ion-back-button defaultHref="/home"></ion-back-button>
+
+    </ion-buttons>
+    <ion-title >Producto</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content style="margin-top: 10%;">
+
+  <ion-grid>
+
+    <ion-row *ngFor="let product of products; let i = index;">
+      <ion-col >
+        <ion-card >     
+          <ion-grid style="text-align: center;">
+            <ion-card-header>
+              <ion-card-subtitle>Product</ion-card-subtitle>
+              <ion-card-title style="font-size: medium;">{{ product.product_name }}</ion-card-title>
+            </ion-card-header>
+            <img class="img-style" src="{{ product.img_url }}" alt="">
+            <ion-row>
+              <ion-col>
+         
+                <ion-card-content>
+                  <p>{{ product.description }}</p>
+                </ion-card-content>
+
+              </ion-col>      
+
+              <ion-col style=" text-align: center;">
+                <p>{{ product.tag }}</p>
+                </ion-col>
+
+            </ion-row> 
+            {{ product.estimatedCost }}
+          </ion-grid>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+   
+
+</ion-content>

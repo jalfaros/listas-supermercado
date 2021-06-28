@@ -9,6 +9,14 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
+        path: 'see-produ/:id',
+        loadChildren: () => import('../pages/see-product/see-product.module').then(m => m.SeeProductPageModule)
+      },
+      {
+        path: 'see-product/:id',
+        loadChildren: () => import('../pages/see-product-list/see-product-list.module').then(m => m.SeeProductListPageModule)
+      },
+      {
         path: 'market',
         loadChildren: () => import('../pages/market/market.module').then(m => m.MarketPageModule)
       },
@@ -18,17 +26,17 @@ const routes: Routes = [
       },
       {
         path: 'products',
-        loadChildren: () => import('../pages/products/products.module').then( m => m.ProductsPageModule )
+        loadChildren: () => import('../pages/products/products.module').then(m => m.ProductsPageModule)
       },
       {
         path: 'product-list-add',
-        loadChildren: () => import( '../pages/list-product-add/list-product-add.module' ).then( m => m.ListProductAddPageModule )
+        loadChildren: () => import('../pages/list-product-add/list-product-add.module').then(m => m.ListProductAddPageModule)
       },
       {
         path: '',
         redirectTo: 'market',
         pathMatch: 'full'
-      } 
+      }
     ]
   },
 ];

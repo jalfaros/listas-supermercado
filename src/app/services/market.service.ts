@@ -74,4 +74,13 @@ export class MarketService implements OnInit {
   deleteMarket(id) {
     return this.http.delete(`${this.BASE_URL}/markets/deleteMarketForId?idMarket=${id}`)
   }
+
+  getProduct(id) {
+    return this.http.get(`${this.BASE_URL}/markets/getProductForId?idProduct=${id}`)
+  }
+
+  deleteProductList(listId, productId) {
+    return this.http.post(`${this.BASE_URL}/markets/deleteProductInList`, { listId, productId });
+  }
+
 }
