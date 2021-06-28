@@ -52,8 +52,8 @@ export class ProductsPage implements OnInit {
     });
   }
 
-  onGetProducts() {
-    this._productService.onGetProducts().subscribe((response: any) => {
+  async onGetProducts() {
+    (await this._productService.onGetProducts()).subscribe((response: any) => {
       this.products = response['productsList'];
       console.log(this.products, 'Holi')
     });

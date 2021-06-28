@@ -17,12 +17,17 @@ export class ProductsService {
     return this.http.post(`${this.BASE_URL}/products/newProduct`, productInformation);
   }
 
-  onGetProducts() {
+  async onGetProducts() {
     return this.http.get(`${this.BASE_URL}/products/getProducts`);
   }
 
   onDeleteProducts(productId) {
     return this.http.post(`${this.BASE_URL}/products/deleteProduct`, productId);
+  }
+
+
+  onAddProductToList( listId, productList ){
+    return this.http.post(`${this.BASE_URL}/products/addProductToList`,{ listId, productList })
   }
 
 }
