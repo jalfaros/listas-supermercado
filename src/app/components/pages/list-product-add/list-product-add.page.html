@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Adding products</ion-title>
+    <ion-buttons slot = "end">
+      <ion-button (click)="onDimiss()" >
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="listData">
+  <ion-card>
+    <ion-card-header style="text-align: center;">
+      <ion-grid>
+        <ion-row>
+          <ion-col style="text-align: left;color: black;">
+            <h5>List name:</h5>
+          </ion-col>
+          <ion-col style="text-align: right;">
+            <h5>{{ listData.listMarketName }}</h5>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-list-header style="margin-bottom: 5px;">
+          Products
+        </ion-list-header>
+
+        <ion-item *ngFor="let product of productsList">
+          <ion-label>{{ product.product_name }}</ion-label>
+          <ion-checkbox slot="end" (ionChange)="onChange($event, product)"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+     <div style="margin-top: 10px;text-align: right;" >
+      <ion-button color="primary" (click)="onAddProducts()">
+        <ion-icon name="add"></ion-icon>
+        Add products
+      </ion-button>
+      
+     </div>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>
+
+
+ 
